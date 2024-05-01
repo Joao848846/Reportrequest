@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/smarts.css">
+    
+    <title>Exibição de Dados da API</title>
+</head>
+<body>
+    <h1>Relatório smarters</h1>
+    <div class="container">
+        <div id="lastUpdate"></div> 
+        <div id="conversationsSummary"></div> 
+        <div id="totalConversations"></div> 
+        <div id="statusMessage"></div>
+    </div>  
+    
+    <label for="yearInput" class="filtro">Selecione o ano:</label>
+    <input type="number" class="filtro" id="yearInput" name="yearInput" min="2010" max="2100" value="2024">
+
+    <label for="monthInput" class="filtro">Selecione o mês:</label>
+    <input type="number" class="filtro" id="monthInput" name="monthInput" min="1" max="12" value="3">
+    
+    <label for="tokenInput">Insira o token de autenticação da conexão</label>
+    <input type="text" id="tokenInput" name="tokenInput">
+    
+    <button onclick="filterByYearMonth()">Filtrar</button>
+    
+    <script src="luffy.js"></script>
+</body>
+</html>
