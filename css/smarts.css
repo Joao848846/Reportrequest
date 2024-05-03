@@ -5,7 +5,7 @@
   
   body {
     
-    background-color: rgb(180, 170, 170);
+    background-color: rgb(202, 160, 185);
   }
   
   h1 {
@@ -44,14 +44,30 @@
   
     text-align: center;
     display: inline-flexbox;
-    background-color: rgb(167, 167, 189);
+    
   
   }
   
   #tokenInput {
   
-    background-color: rgb(153, 146, 146);
+    
     height: 15px;
     width: 300px;
     left: 50px;
+  }
+
+  .controlerpage {
+
+    background-color: pink;
+    width: 870px;
+    padding: 10px;
+    top: 0px;
+  }
+  
+  ul {
+
+    font-size: 20px;
+    list-style-type: circle;
+    list-style-position: inside;
+    background: rgb(197, 222, 231);
   }
