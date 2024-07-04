@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/smarts.css">
+    <title>Exibição de Dados da API</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+    <h1>Relatório Smarters</h1>
+
+    <div class="container">
+        <div id="lastUpdate"></div>
+        <div id="conversationsSummary"></div>
+        <div id="totalConversations"></div>
+        <br>
+    </div>
+
+    <div class="controlerpage">
+        <div class="input-group">
+            <label for="yearInput">Selecione o ano:</label>
+            <input type="number" id="yearInput" name="yearInput" min="2010" max="2100" value="2024">
+        </div>
+        <div class="input-group">
+            <label for="monthInput">Selecione o mês:</label>
+            <input type="number" id="monthInput" name="monthInput" min="1" max="12" value="3">
+        </div>
+        <div class="input-group">
+            <label for="tokenInput">Insira o token:</label>
+            <input type="text" id="tokenInput" name="tokenInput">
+        </div>
+        <button class="btn" onclick="filterByYearMonth()">Gerar request</button>
+        <br>
+        <button class="btn" onclick="generatePDF()">Gerar PDF</button>
+    </div>
+
+    <script src="luffy.js"></script>
+   
+</body>
+
+</html>

@@ -21,16 +21,14 @@ function fetchDataByYearMonth(year, month) {
     });
 }
 
-
 // Função para lidar com o evento de filtragem por ano e mês
 function filterByYearMonth() {
-    
     const year = document.getElementById('yearInput').value;
     const month = document.getElementById('monthInput').value;
-     token = document.getElementById('tokenInput').value
+    token = document.getElementById('tokenInput').value;
 
-    console.log('Ano selecionado:', year); 
-    console.log('Mês selecionado:', month); 
+    console.log('Ano selecionado:', year);
+    console.log('Mês selecionado:', month);
 
     if (year && month) {
         // Buscar os dados da API com o filtro por ano e mês
@@ -44,40 +42,64 @@ function filterByYearMonth() {
                 // Lidar com erros
                 console.error('Erro ao filtrar os dados:', error);
                 // Limpar a exibição em caso de erro
-                //clearView();
+                clearView();
             });
     } else {
         // Se o ano ou mês não forem válidos, exibir uma mensagem de erro
         console.error('Ano ou mês inválidos');
     }
 }
-    function updateView(data) {
-        // Preencher a última atualização
-        // usar quando tiver motivos document.getElementById('lastUpdate').innerText = 'Última Atualização: ' + data.data.lastUpdate;
 
-        // Preencher o total de conversas
-        const totalContainer = document.getElementById('totalConversations');
-        totalContainer.innerText = 'Total de HSMs utilizadas no mês:';
-        
-        
-        // Criar uma lista para exibir os detalhes do total
-        const totalList = document.createElement('ul');
-        totalList.classList.add('listStyle')
+// Função para atualizar a visualização com os dados recebidos
+function updateView(data) {
+    // Preencher a última atualização
+    // usar quando tiver motivos document.getElementById('lastUpdate').innerText = 'Última Atualização: ' + data.data.lastUpdate;
 
-        // Obter apenas os dados do campo "total"
-        const totalData = data.data.conversationsSummary.total;
+    // Preencher o total de conversas
+    const totalContainer = document.getElementById('totalConversations');
+    totalContainer.innerText = 'Total de HSMs utilizadas no mês:';
 
-        // Iterar sobre os dados do campo "total" e preencher a lista
-        for (const key in totalData) {
-            const listItem = document.createElement('li');
-            listItem.innerText = `${key}: ${totalData[key]}`;
-            totalList.appendChild(listItem);
-        }
+    // Criar uma lista para exibir os detalhes do total
+    const totalList = document.createElement('ul');
+    totalList.classList.add('listStyle');
 
-        // Anexar a lista ao contêiner de total de conversas
-        totalContainer.appendChild(totalList);
+    // Obter apenas os dados do campo "total"
+    const totalData = data.data.conversationsSummary.total;
 
-        // Preencher o status da mensagem
-        // Usar em outro momento document.getElementById('statusMessage').innerText = 'Status da Mensagem: ' + data.status;
+    // Iterar sobre os dados do campo "total" e preencher a lista
+    for (const key in totalData) {
+        const listItem = document.createElement('li');
+        listItem.innerText = `${key}: ${totalData[key]}`;
+        totalList.appendChild(listItem);
     }
 
+    // Anexar a lista ao contêiner de total de conversas
+    totalContainer.appendChild(totalList);
+
+    // Preencher o status da mensagem
+    // Usar em outro momento document.getElementById('statusMessage').innerText = 'Status da Mensagem: ' + data.status;
+}
+
+// Função para limpar a visualização em caso de erro
+function clearView() {
+    document.getElementById('lastUpdate').innerText = '';
+    document.getElementById('conversationsSummary').innerText = '';
+    document.getElementById('totalConversations').innerText = '';
+}
+
+// Função para gerar o PDF
+function generatePDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    const lastUpdate = document.getElementById('lastUpdate').innerText;
+    const conversationsSummary = document.getElementById('conversationsSummary').innerText;
+    const totalConversations = document.getElementById('totalConversations').innerText;
+
+    doc.text("Relatório Smarters", 10, 10);
+    doc.text(lastUpdate, 10, 20);
+    doc.text(conversationsSummary, 10, 30);
+    doc.text(totalConversations, 10, 40);
+
+    doc.save("relatorio_smarters.pdf");
+}
